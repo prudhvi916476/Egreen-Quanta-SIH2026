@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+pydantic
+qiskit
+qiskit-aer
+pytest
+httpx
+cirq
+PennyLane
