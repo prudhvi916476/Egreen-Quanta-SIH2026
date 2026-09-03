@@ -1,0 +1,180 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    /* 
+     * PROFESSIONAL DESIGN SYSTEM
+     * Inspired by mature LMS platforms (Udemy, Coursera)
+     */
+     
+    /* Colors - Backgrounds & Surfaces */
+    --background: #f8f9fa; /* Very light cool gray for app background */
+    --foreground: #111827; /* Dark charcoal for main text */
+    --card: #ffffff;
+    --card-foreground: #111827;
+    --popover: #ffffff;
+    --popover-foreground: #111827;
+    
+    /* Colors - Brand / Primary */
+    --primary: #4f46e5; /* Deep Indigo - Professional, trustworthy */
+    --primary-hover: #4338ca;
+    --primary-foreground: #ffffff;
+    --primary-light: #e0e7ff;
+    
+    /* Colors - Secondary / Muted */
+    --secondary: #f3f4f6;
+    --secondary-hover: #e5e7eb;
+    --secondary-foreground: #1f2937;
+    --muted: #f3f4f6;
+    --muted-foreground: #6b7280;
+    
+    /* Colors - Accents & Quantum specifics */
+    --accent: #3b82f6; /* Blue */
+    --accent-foreground: #ffffff;
+    --quantum-border: #bfdbfe;
+    --quantum-bg: #eff6ff;
+    
+    /* Colors - Semantic */
+    --success: #10b981;
+    --success-bg: #d1fae5;
+    --warning: #f59e0b;
+    --warning-bg: #fef3c7;
+    --error: #ef4444;
+    --error-bg: #fee2e2;
+
+    /* Colors - Borders */
+    --border: #e5e7eb;
+    --border-strong: #d1d5db;
+    --input: #e5e7eb;
+    --ring: #4f46e5;
+    
+    /* Layout */
+    --radius: 0.5rem;
+    --nav-height: 4.5rem;
+    --sidebar-width: 320px;
+  }
+
+  /* Typography Scale overrides */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: #111827;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer utilities {
+  .text-hero {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+  }
+  @media (min-width: 768px) {
+    .text-hero { font-size: 3rem; line-height: 1; }
+  }
+  @media (min-width: 1024px) {
+    .text-hero { font-size: 4rem; line-height: 1.1; }
+  }
+
+  .text-page-title {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+  }
+  @media (min-width: 768px) {
+    .text-page-title { font-size: 2.25rem; line-height: 2.5rem; }
+  }
+
+  .text-section-title {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+  }
+  @media (min-width: 768px) {
+    .text-section-title { font-size: 1.875rem; line-height: 1.375; }
+  }
+
+  .text-card-title {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    font-weight: 600;
+  }
+  @media (min-width: 768px) {
+    .text-card-title { font-size: 1.25rem; line-height: 1.75rem; }
+  }
+
+  .text-body {
+    font-size: 1rem;
+    line-height: 1.625;
+  }
+  .text-meta {
+    font-size: 0.875rem;
+    color: #6b7280;
+    font-weight: 500;
+  }
+  
+  /* Layout utilities */
+  .container-app {
+    width: 100%;
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  @media (min-width: 768px) {
+    .container-app {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+}
+
+/* Custom Component Classes */
+.gate-chip {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.125rem;
+  border-radius: 0.25rem;
+  background-color: #ffffff;
+  border-width: 2px;
+  transition-property: all;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+.gate-h { border-color: #8b5cf6; color: #8b5cf6; }
+.gate-x { border-color: #10b981; color: #10b981; }
+.gate-y { border-color: #f59e0b; color: #f59e0b; }
+.gate-z { border-color: #ef4444; color: #ef4444; }
+.gate-cnot { border-color: #3b82f6; color: #3b82f6; border-radius: 9999px; }
+.gate-m { border-color: #4b5563; color: #4b5563; background-color: #f9fafb; }
+
+.qubit-wire {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.qubit-wire::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background-color: var(--border-strong);
+  transform: translateY(-50%);
+  z-index: 0;
+}
