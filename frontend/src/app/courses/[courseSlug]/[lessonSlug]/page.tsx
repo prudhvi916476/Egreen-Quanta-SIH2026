@@ -1,5 +1,6 @@
 'use client';
 
+import { use } from 'react';
 import { AppShell } from '@/components/layout/AppShell';
 import { Button } from '@/components/ui/Button';
 import { Card, CardContent } from '@/components/ui/Card';
@@ -10,8 +11,9 @@ import { notFound, useRouter } from 'next/navigation';
 import { CheckCircle2, ChevronLeft, ChevronRight, Target, BrainCircuit, ExternalLink, Sparkles, BookOpen } from 'lucide-react';
 import Link from 'next/link';
 
-export default function LessonPage({ params }: { params: { courseSlug: string, lessonSlug: string } }) {
-  const lessonData = getLesson(params.courseSlug, params.lessonSlug);
+export default function LessonPage({ params }: { params: Promise<{ courseSlug: string, lessonSlug: string }> }) {
+  const resolvedParams = use(params);
+  const lessonData = getLesson(resolvedParams.courseSlug, resolvedParams.lessonSlug);
   const { progress, refreshProgress } = useUser();
   const router = useRouter();
 
@@ -21,7 +23,7 @@ export default function LessonPage({ params }: { params: { courseSlug: string, l
 
   const { lesson, course } = lessonData;
   const content = LESSON_CONTENT[lesson.slug];
-  const { prev, next } = getAdjacentLessons(params.courseSlug, params.lessonSlug);
+  const { prev, next } = getAdjacentLessons(resolvedParams.courseSlug, resolvedParams.lessonSlug);
   const status = progress?.lessonStatuses[lesson.id] || (lesson.slug === 'qubits' ? 'completed' : lesson.slug === 'superposition' ? 'in-progress' : 'not-started');
 
   const handleMarkComplete = async () => {

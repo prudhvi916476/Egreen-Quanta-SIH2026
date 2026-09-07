@@ -1,5 +1,6 @@
 'use client';
 
+import { use } from 'react';
 import { AppShell } from '@/components/layout/AppShell';
 import { Button } from '@/components/ui/Button';
 import { Card, CardContent } from '@/components/ui/Card';
@@ -10,8 +11,9 @@ import { getCourse } from '@/data/courseContent';
 import { useUser } from '@/contexts/UserContext';
 import { notFound } from 'next/navigation';
 
-export default function CourseOverviewPage({ params }: { params: { courseSlug: string } }) {
-  const course = getCourse(params.courseSlug);
+export default function CourseOverviewPage({ params }: { params: Promise<{ courseSlug: string }> }) {
+  const resolvedParams = use(params);
+  const course = getCourse(resolvedParams.courseSlug);
   const { progress } = useUser();
 
   if (!course) {

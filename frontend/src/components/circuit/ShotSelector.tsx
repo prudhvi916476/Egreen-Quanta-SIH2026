@@ -8,36 +8,24 @@ export function ShotSelector() {
   const options = [100, 1000, 8192];
 
   return (
-    <div className="flex flex-col gap-2">
-      <label className="text-xs font-semibold uppercase text-[var(--text-muted)] tracking-wider">
-        Shots (Measurements)
-      </label>
-      <div className="flex flex-wrap gap-2">
-        {options.map((option) => (
-          <button
-            key={option}
-            onClick={() => setShots(option)}
-            className={`px-4 py-2 rounded-lg border font-medium text-sm transition-all ${
-              circuit.shots === option
-                ? 'border-[var(--brand-primary)] bg-[var(--brand-primary-light)] text-[var(--brand-primary)] shadow-sm'
-                : 'border-[var(--border-default)] bg-[var(--bg-surface)] text-[var(--text-primary)] hover:border-[var(--border-strong)]'
-            }`}
-          >
-            {option}
-          </button>
+    <div className="flex items-center gap-2">
+      <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Shots</span>
+      <select
+        value={options.includes(circuit.shots) ? circuit.shots : "custom"}
+        onChange={(e) => {
+          if (e.target.value !== "custom") {
+            setShots(parseInt(e.target.value));
+          }
+        }}
+        className="text-sm border border-gray-300 rounded-md px-2 py-1.5 bg-white text-gray-800 outline-none focus:border-indigo-500 cursor-pointer shadow-sm"
+      >
+        {options.map(opt => (
+          <option key={opt} value={opt}>{opt}</option>
         ))}
-        <div className="relative flex items-center">
-          <input
-            type="number"
-            min="1"
-            max="100000"
-            value={circuit.shots}
-            onChange={(e) => setShots(parseInt(e.target.value) || 100)}
-            className="w-24 pl-3 pr-2 py-2 rounded-lg border border-[var(--border-default)] bg-[var(--bg-surface)] text-sm outline-none focus:border-[var(--brand-primary)]"
-            placeholder="Custom"
-          />
-        </div>
-      </div>
+        {!options.includes(circuit.shots) && (
+          <option value="custom">{circuit.shots} (Custom)</option>
+        )}
+      </select>
     </div>
   );
 }

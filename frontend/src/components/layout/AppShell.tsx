@@ -16,7 +16,7 @@ export function AppShell({ children }: AppShellProps) {
   
   // Specific layouts based on route
   const isLessonPage = pathname.startsWith('/courses/') && pathname.split('/').length > 3;
-  const isCircuitLab = pathname.startsWith('/circuit-lab');
+  const isCircuitLab = pathname === '/circuit-lab' || pathname === '/circuit-lab/';
   const isCoursePage = isLessonPage;
   const courseSlug = isLessonPage ? pathname.split('/')[2] : null;
 
