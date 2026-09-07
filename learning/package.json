@@ -1,0 +1,16 @@
+{
+  "name": "egreen-quanta-learning",
+  "version": "1.0.0",
+  "description": "Egreen Quanta — Learning & Assessment Engine",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "verify": "tsx verify.ts",
+    "typecheck": "tsc --noEmit",
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.0",
+    "typescript": "^5.5.0"
+  }
+}
